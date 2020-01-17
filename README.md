@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-##Problems faced
+## Problems faced
 
 - Mutating the state objects by using push instead of concat [link](https://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs)
 
