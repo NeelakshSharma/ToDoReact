@@ -1,9 +1,15 @@
 import React from "react";
-import { Button, TextField, Box } from "@material-ui/core";
+import { Button, TextField, Box, Snackbar } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert severity="info" variant="filled" {...props} />;
+}
 
 export default class AddTask extends React.Component {
   state = {
-    task: ""
+    task: "",
+    open: false
   };
   handleClick = () => {
     if (this.state.task) {
@@ -13,9 +19,15 @@ export default class AddTask extends React.Component {
       };
       this.props.parentCallBack(task);
       this.setState({
-        task: ""
+        task: "",
+        open: true
       });
     }
+  };
+  handleClose = () => {
+    this.setState({
+      open: false
+    });
   };
   handleChange = event => {
     this.setState({
@@ -37,6 +49,13 @@ export default class AddTask extends React.Component {
             Add task
           </Button>
         </Box>
+        <Snackbar
+          open={this.state.open}
+          autoHideDuration={2000}
+          onClose={this.handleClose}
+        >
+          <Alert>Task Added!</Alert>
+        </Snackbar>
       </div>
     );
   }
