@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Paper } from "@material-ui/core";
 export default class TaskList extends React.Component {
   handleDone = event => {
     if (event.target.checked) {
@@ -15,36 +15,46 @@ export default class TaskList extends React.Component {
     const list1 = this.props.list1;
     const list2 = this.props.list2;
     const tasksPendingList = (
-      <ul>
+      <ul style={{ listStyleType: "none" }}>
         {list1.map(taskItem => (
-          <li>
-            <label>
-              <input
-                type="checkbox"
-                name={taskItem.task}
-                onChange={this.handleDone}
-                checked={taskItem.status}
-              />
-              {taskItem.task}
-            </label>
-          </li>
+          <Paper
+            style={{
+              width: "65%",
+              padding: "15px",
+              marginBottom: "5px"
+            }}
+          >
+            <li>
+              <label>
+                <input
+                  type="checkbox"
+                  name={taskItem.task}
+                  onChange={this.handleDone}
+                  checked={taskItem.status}
+                />
+                {taskItem.task}
+              </label>
+            </li>
+          </Paper>
         ))}
       </ul>
     );
     const tasksDoneList = (
-      <ul>
+      <ul style={{ listStyleType: "none" }}>
         {list2.map(taskItem => (
-          <li>
-            <label>
-              <input
-                type="checkbox"
-                name={taskItem.task}
-                onChange={this.handleNotDone}
-                checked={taskItem.status}
-              />
-              {taskItem.task}
-            </label>
-          </li>
+          <Paper style={{ width: "65%", padding: "15px", marginBottom: "5px" }}>
+            <li>
+              <label>
+                <input
+                  type="checkbox"
+                  name={taskItem.task}
+                  onChange={this.handleNotDone}
+                  checked={taskItem.status}
+                />
+                {taskItem.task}
+              </label>
+            </li>
+          </Paper>
         ))}
       </ul>
     );

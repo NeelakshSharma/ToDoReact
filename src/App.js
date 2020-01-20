@@ -54,8 +54,7 @@ export default class App extends React.Component {
   };
   render() {
     return (
-      <div>
-        {/* just for testing {this.state.list1.length} */}
+      <div class="container">
         <AddTask parentCallBack={this.callBackPushFunction} />
         {this.state.list1.length === 0 && this.state.list2.length === 0 ? (
           <h3>Add something</h3>
@@ -67,7 +66,6 @@ export default class App extends React.Component {
             parentCallBack2={this.callBackUnDoneFunction}
           />
         )}
-        {/* just for testing {this.state.list2.length} */}
       </div>
     );
   }
