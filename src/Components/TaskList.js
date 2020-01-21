@@ -1,6 +1,9 @@
 import React from "react";
 import { Paper, Snackbar } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
+import Checkbox from "@material-ui/core/Checkbox";
+import CircleUnchecked from "@material-ui/icons/RadioButtonUnchecked";
+import CircleCheckedFilled from "@material-ui/icons/CheckCircle";
 
 function Alert(props) {
   return <MuiAlert severity="success" variant="filled" {...props} />;
@@ -39,21 +42,23 @@ export default class TaskList extends React.Component {
     const list2 = this.props.list2;
     const tasksPendingList = (
       <ul style={{ listStyleType: "none" }}>
-        {list1.map(taskItem => (
+        {list1.map((taskItem, index) => (
           <Paper
             style={{
-              width: "65%",
+              width: "75%",
               padding: "15px",
               marginBottom: "8px"
             }}
             elevation={5}
+            key={index.toString()}
           >
-            <li>
+            <li key={index.toString()}>
               <label>
-                <input
-                  type="checkbox"
+                <Checkbox
                   name={taskItem.task}
                   onChange={this.handleDone}
+                  icon={<CircleUnchecked />}
+                  checkedIcon={<CircleCheckedFilled />}
                   checked={taskItem.status}
                 />
                 {taskItem.task}
@@ -65,22 +70,25 @@ export default class TaskList extends React.Component {
     );
     const tasksDoneList = (
       <ul style={{ listStyleType: "none" }}>
-        {list2.map(taskItem => (
+        {list2.map((taskItem, index) => (
           <Paper
             style={{
-              width: "65%",
+              width: "75%",
               padding: "15px",
               marginBottom: "5px",
               background: "#bbeccd"
             }}
+            key={index.toString()}
           >
-            <li>
+            <li key={index.toString()}>
               <label>
-                <input
-                  type="checkbox"
+                <Checkbox
                   name={taskItem.task}
                   onChange={this.handleNotDone}
+                  icon={<CircleUnchecked />}
+                  checkedIcon={<CircleCheckedFilled />}
                   checked={taskItem.status}
+                  color="primary"
                 />
                 {taskItem.task}
               </label>

@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import AddTask from "./Components/AddTask";
 import TaskList from "./Components/TaskList";
+import Appbar from "./Components/Appbar";
 
 export default class App extends React.Component {
   state = {
@@ -52,20 +53,29 @@ export default class App extends React.Component {
       list1: this.state.list1.concat(taskUndone)
     });
   };
+  clearLists = () => {
+    this.setState({
+      list1: [],
+      list2: []
+    });
+  };
   render() {
     return (
-      <div class="container">
-        <AddTask parentCallBack={this.callBackPushFunction} />
-        {this.state.list1.length === 0 && this.state.list2.length === 0 ? (
-          <h3>Add something</h3>
-        ) : (
-          <TaskList
-            list1={this.state.list1}
-            list2={this.state.list2}
-            parentCallBack={this.callBackDoneFunction}
-            parentCallBack2={this.callBackUnDoneFunction}
-          />
-        )}
+      <div>
+        <Appbar />
+        <div class="container">
+          <AddTask parentCallBack={this.callBackPushFunction} />
+          {this.state.list1.length === 0 && this.state.list2.length === 0 ? (
+            <h3>Add something</h3>
+          ) : (
+            <TaskList
+              list1={this.state.list1}
+              list2={this.state.list2}
+              parentCallBack={this.callBackDoneFunction}
+              parentCallBack2={this.callBackUnDoneFunction}
+            />
+          )}
+        </div>
       </div>
     );
   }

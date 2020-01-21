@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, TextField, Box, Snackbar } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
+import { Add } from "@material-ui/icons";
 
 function Alert(props) {
   return <MuiAlert severity="info" variant="filled" {...props} />;
@@ -43,9 +44,15 @@ export default class AddTask extends React.Component {
             value={this.state.task}
             variant="outlined"
             label="Add task here"
-            style={{ marginRight: "5px" }}
+            style={{ marginRight: "30px", width: "75%" }}
           />
-          <Button variant="outlined" color="primary" onClick={this.handleClick}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleClick}
+            style={{ height: "55px" }}
+          >
+            {<Add style={{ paddingRight: "5px" }} />}
             Add task
           </Button>
         </Box>
