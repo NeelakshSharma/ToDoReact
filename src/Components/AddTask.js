@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, TextField, Box, Snackbar } from "@material-ui/core";
+import { Button, TextField, Snackbar } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import { Add } from "@material-ui/icons";
 
@@ -8,11 +8,44 @@ function Alert(props) {
 }
 
 export default class AddTask extends React.Component {
+  addTaskForm() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <TextField
+          onChange={this.handleChange}
+          value={this.state.task}
+          variant="outlined"
+          label="Add task here"
+          style={{ marginRight: "30px", width: "75%" }}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          style={{ height: "55px" }}
+        >
+          {<Add style={{ paddingRight: "5px" }} />}
+          Add task
+        </Button>
+      </form>
+    );
+  }
+  taskAdditionSnackbar() {
+    return (
+      <Snackbar
+        open={this.state.open}
+        autoHideDuration={2000}
+        onClose={this.handleClose}
+      >
+        <Alert>Task Added!</Alert>
+      </Snackbar>
+    );
+  }
   state = {
     task: "",
     open: false
   };
-  handleClick = () => {
+  handleSubmit = event => {
     if (this.state.task) {
       let task = {
         task: this.state.task,
@@ -23,6 +56,7 @@ export default class AddTask extends React.Component {
         task: "",
         open: true
       });
+      event.preventDefault();
     }
   };
   handleClose = () => {
@@ -38,31 +72,8 @@ export default class AddTask extends React.Component {
   render() {
     return (
       <>
-        <Box>
-          <TextField
-            onChange={this.handleChange}
-            value={this.state.task}
-            variant="outlined"
-            label="Add task here"
-            style={{ marginRight: "30px", width: "75%" }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleClick}
-            style={{ height: "55px" }}
-          >
-            {<Add style={{ paddingRight: "5px" }} />}
-            Add task
-          </Button>
-        </Box>
-        <Snackbar
-          open={this.state.open}
-          autoHideDuration={2000}
-          onClose={this.handleClose}
-        >
-          <Alert>Task Added!</Alert>
-        </Snackbar>
+        {this.addTaskForm()}
+        {this.taskAdditionSnackbar()}
       </>
     );
   }

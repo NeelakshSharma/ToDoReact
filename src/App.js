@@ -3,6 +3,7 @@ import "./App.css";
 import AddTask from "./Components/AddTask";
 import TaskList from "./Components/TaskList";
 import Appbar from "./Components/Appbar";
+import { Helmet } from "react-helmet";
 
 export default class App extends React.Component {
   state = {
@@ -62,6 +63,9 @@ export default class App extends React.Component {
   render() {
     return (
       <>
+        <Helmet>
+          <title>ToDo App by Wager Boi</title>
+        </Helmet>
         <Appbar />
         <div class="container">
           <AddTask parentCallBack={this.callBackPushFunction} />
