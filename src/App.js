@@ -61,7 +61,7 @@ export default class App extends React.Component {
   };
   render() {
     return (
-      <div>
+      <>
         <Appbar />
         <div class="container">
           <AddTask parentCallBack={this.callBackPushFunction} />
@@ -76,7 +76,7 @@ export default class App extends React.Component {
             />
           )}
         </div>
-      </div>
+      </>
     );
   }
 }

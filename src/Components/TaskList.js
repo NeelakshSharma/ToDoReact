@@ -109,11 +109,11 @@ export default class TaskList extends React.Component {
     if (list1.length !== 0) {
       if (list2.length === 0) {
         return (
-          <div>
+          <>
             <h3>Finish these tasks and continue adding more.</h3>
             {tasksPendingList}
             {TaskDoneRemovalSnackBar}
-          </div>
+          </>
         );
       } else {
         const TaskDoneSnackBar = (
@@ -127,14 +127,14 @@ export default class TaskList extends React.Component {
         );
 
         return (
-          <div>
+          <>
             <h3>Tasks Pending</h3>
             {tasksPendingList}
             <h3>Tasks completed</h3>
             {tasksDoneList}
             {TaskDoneSnackBar}
             {TaskDoneRemovalSnackBar}
-          </div>
+          </>
         );
       }
     }
@@ -149,12 +149,12 @@ export default class TaskList extends React.Component {
     );
 
     return (
-      <div>
+      <>
         <h2>You're good to go.</h2>
         {tasksDoneList}
         {AllTasksDoneSnackBar}
         {TaskDoneRemovalSnackBar}
-      </div>
+      </>
     );
   }
 }

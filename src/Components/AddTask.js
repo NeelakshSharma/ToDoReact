@@ -37,7 +37,7 @@ export default class AddTask extends React.Component {
   };
   render() {
     return (
-      <div>
+      <>
         <Box>
           <TextField
             onChange={this.handleChange}
@@ -63,7 +63,7 @@ export default class AddTask extends React.Component {
         >
           <Alert>Task Added!</Alert>
         </Snackbar>
-      </div>
+      </>
     );
   }
 }
