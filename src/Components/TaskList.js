@@ -7,11 +7,9 @@ import CircleCheckedFilled from "@material-ui/icons/CheckCircle";
 import EditIcon from "@material-ui/icons/Edit";
 
 function Alert(props) {
-  return <MuiAlert severity="success" variant="filled" {...props} />;
+  let severity = true(props.statusRemove ? (severity = "success") : "warning");
 }
-function AlertRemoval(props) {
-  return <MuiAlert severity="warning" variant="filled" {...props} />;
-}
+
 export default class TaskList extends React.Component {
   state = {
     open: false,
@@ -115,7 +113,9 @@ export default class TaskList extends React.Component {
         autoHideDuration={2000}
         onClose={this.handleClose}
       >
-        <AlertRemoval>Task removed from Completed tasks list.</AlertRemoval>
+        <Alert statusRemove={true}>
+          Task removed from Completed tasks list.
+        </Alert>
       </Snackbar>
     );
     if (list1.length !== 0) {
@@ -124,7 +124,7 @@ export default class TaskList extends React.Component {
           <>
             <h3>Finish these tasks and continue adding more.</h3>
             {tasksPendingList}
-            {TaskDoneRemovalSnackBar}
+            {TaskDoneRemovalSnackBar(list1)}
           </>
         );
       } else {
