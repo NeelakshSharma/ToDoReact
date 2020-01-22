@@ -7,7 +7,13 @@ import { Helmet } from "react-helmet";
 
 export default class App extends React.Component {
   state = {
-    list1: [],
+    list1: [
+      {
+        taskName: "task1",
+        status: 0
+      },
+      { taskName: "task2", status: 1 }
+    ],
     list2: []
   };
   callBackPushFunction = childData => {

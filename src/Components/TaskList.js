@@ -1,9 +1,10 @@
 import React from "react";
-import { Paper, Snackbar } from "@material-ui/core";
+import { Paper, Snackbar, Button } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
 import Checkbox from "@material-ui/core/Checkbox";
 import CircleUnchecked from "@material-ui/icons/RadioButtonUnchecked";
 import CircleCheckedFilled from "@material-ui/icons/CheckCircle";
+import EditIcon from "@material-ui/icons/Edit";
 
 function Alert(props) {
   return <MuiAlert severity="success" variant="filled" {...props} />;
@@ -14,7 +15,8 @@ function AlertRemoval(props) {
 export default class TaskList extends React.Component {
   state = {
     open: false,
-    openRemoval: false
+    openRemoval: false,
+    openEditDialog: false
   };
   handleClose = () => {
     this.setState({
@@ -37,9 +39,18 @@ export default class TaskList extends React.Component {
     console.log(event.target.name);
     this.props.parentCallBack2(event.target.name);
   };
+  handleEdit = event => {
+    this.setState({
+      openEditDialog: true
+    });
+  };
   render() {
-    const list1 = this.props.list1;
-    const list2 = this.props.list2;
+    const list1 = this.props.list1.filter(x => {
+      return !x.status;
+    });
+    const list2 = this.props.list1.filter(x => {
+      return x.status;
+    });
     const tasksPendingList = (
       <ul style={{ listStyleType: "none" }}>
         {list1.map((taskItem, index) => (
@@ -61,8 +72,9 @@ export default class TaskList extends React.Component {
                   checkedIcon={<CircleCheckedFilled />}
                   checked={taskItem.status}
                 />
-                {taskItem.task}
+                {taskItem.taskName}
               </label>
+              <Button onClick={this.handleEdit}>{<EditIcon />}</Button>
             </li>
           </Paper>
         ))}
@@ -90,7 +102,7 @@ export default class TaskList extends React.Component {
                   checked={taskItem.status}
                   color="primary"
                 />
-                {taskItem.task}
+                {taskItem.taskName}
               </label>
             </li>
           </Paper>
